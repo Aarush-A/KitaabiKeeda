@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Section | KitaabiKeeda</title>
+    <style>
+        body {
+            background-color: #c7c4ba;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        img {
+            max-width: 100px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        h2 {
+            color: #1d2725;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            color: #1d2725;
+            font-weight: bold;
+        }
+        
+        input[type="submit"] {
+            background-color: #1d2725;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0a1211;
+        }
+        
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="../static/logo.png">
+    <h2>Add New Section</h2>
+    {% if err %}
+        <p>{{ err }}</p>
+    {% endif %}
+    <form method="POST" id="newsection">
+        <label>Section Name</label>
+        <input type="text" name="secname" />
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register | KitaabiKeeda</title>
+    <style>
+        body {
+            background-color: #c7c4ba;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        img {
+            max-width: 100px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        h2 {
+            color: #1d2725;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            color: #1d2725;
+            font-weight: bold;
+        }
+
+        input[type="radio"] {
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: 8px;
+        }
+
+        input[type="submit"] {
+            background-color: #1d2725;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0a1211;
+        }
+        
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="../static/logo.png">
+    <h2>Register for KitaabiKeeda</h2>
+    {% if error_message %}
+    <p>{{ error_message }}</p>
+    {% endif %}
+    <form method="POST" action="/register" id="registration-form" onsubmit="return validation()">
+        <label>First Name</label>
+        <input type="text" name="fname" id="fname" required/>
+
+        <label>Last Name</label>
+        <input type="text" name="lname" id="lname" required/>
+
+        <label>Email ID</label>
+        <input type="text" name="email" id="email" required/>
+
+        <label>Username</label>
+        <input type="text" name="username" id="username" required/>
+
+        <label>Password</label>
+        <input type="password" name="password" id="password" required/>
+
+        <label>
+            <input type="radio" name="role" value="admin" required/>
+            Librarian
+        </label>
+
+        <label>
+            <input type="radio" name="role" value="member" required/>
+            Member
+        </label>
+
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+
+<script>
+    function validation() {
+        var fname = document.getElementById("fname").value;
+        var lname = document.getElementById("lname").value;
+        var email = document.getElementById("email").value;
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        if (fname == "" || lname == "" || email == "" || username == "" || password == "") {
+            alert("All fields must be filled out");
+            return false;
+        }
+
+        if(/\d/.test(fname) || /\d/.test(lname)){
+            alert("Name cannot have a number")
+            return false;
+        }
+
+        if (/ /.test(password)){
+                alert("PLease remove space from password")
+                return false
+        }
+
+        return true;
+    }
+
+</script>
+
+
+</body>
+</html>

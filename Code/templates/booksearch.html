@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results | KitaabiKeeda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c7c4ba;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            color: #1d2725;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+            background-color: #1d2725;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #0a1211;
+        }
+
+        .profile-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #1d2725;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-decoration: none;
+        }
+
+        .profile-link:hover {
+            background-color: #0a1211;
+        }
+
+        .search-form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-form input[type="text"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-right: 5px;
+        }
+
+        .search-form button {
+            padding: 8px 15px;
+            border-radius: 5px;
+            background-color: #1d2725;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-form button:hover {
+            background-color: #0a1211;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Book Search Results</h2>
+    
+    <table border="2" id="books-table">
+        <tr>
+            <th>S.No</th>
+            <th>ISBN</th>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Section Name</th>
+            <th>Rating</th>
+            <th>Action</th>
+        </tr>
+        {% for book in books %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ book[0] }}</td>
+                <td>{{ book[1] }}</td>
+                <td>{{ book[2] }}</td>
+                <td>{{ book[4] }}</td>
+                <td>{{ book[6] }}</td>
+                {% if book[5] == "Approved" or  book[5]=="Pending"%}
+                <td>
+                    Book already in library/ in request
+                </td>
+                {% elif lim %}
+                <td>
+                    {{ lim }}
+                </td>
+                {% else %}
+                <td>
+                    <a href="/userdash/requestbook/{{book[0]}}" style="background-color: #1d2725; color: #fff; padding: 5px 10px; border-radius: 5px; text-decoration: none;">Request</a>
+                </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/userdash" class="profile-link">Return to dashboard</a>
+</div>
+
+</body>
+</html>

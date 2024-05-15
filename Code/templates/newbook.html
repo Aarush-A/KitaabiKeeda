@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Book | KitaabiKeeda</title>
+    <style>
+body {
+            background-color: #c7c4ba;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        img {
+            max-width: 100px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        h2 {
+            color: #1d2725;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            color: #1d2725;
+            font-weight: bold;
+        }
+
+        input[type="radio"] {
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: 8px;
+        }
+
+        input[type="submit"] {
+            background-color: #1d2725;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0a1211;
+        }
+        
+
+        p {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        a {
+            color: #1d2725;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="../static/logo.png">
+    <h2 style="color: #1d2725;">Add A New Book</h2>
+    {% if error %}
+        <p style="color: red">{{ error }}</p>
+    {% endif %}
+    <form method="POST" id="login-form" onsubmit="return validate()">
+        <label>ISBN</label>
+        <input type="number" name="isbn" id="isbn" required/>
+
+        <label>Book Name</label>
+        <input type="text" name="bname" required/>
+
+        <label>Author Name</label>
+        <input type="text" name="author" required/>
+
+        <label>Content</label>
+        <input type="text" name="content" required/>
+
+        <br>
+
+        {% for secname in sec %}
+        <label>
+            <input type="radio" name="secval" value="{{secname[0]}}" required/>
+            {{secname[0]}}
+        </label>
+        {% endfor %}
+
+        <p>Want to add a new section? <a href='newsection'>Add here</a></p>
+        <br>
+
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+
+<script>
+    function validate(){
+        var isbn=document.getElementById("isbn").value;
+        
+        if(isNaN(isbn)){
+            alert("ISBN must be a numeric value")
+            return false
+        }
+
+        return true;
+        
+    }
+</script>
+
+</body>
+</html>

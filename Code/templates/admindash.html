@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard | KitaabiKeeda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c7c4ba;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .container2{
+            display: flex;
+        }
+
+        h2 {
+            color: #1d2725;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+
+        a {
+            color: #1d2725;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        .actions a {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+            background-color: #1d2725;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .actions a:hover {
+            background-color: #0a1211;
+        }
+
+        .actions a.reject {
+            background-color: #e01414;
+        }
+
+        .adder {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #1d2725;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            text-decoration: none;
+        }
+
+        .adder:hover {
+            background-color: #0a1211;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Admin Dashboard</h2>
+    <a href="/logout" style="background-color: #1d2725; color: #fff; padding: 5px 10px; border-radius: 5px; text-decoration: none;">Logout</a>
+    <div class="container2">
+    <table border="2" id="sections-table" style="width:80%">
+        <tr>
+            <th>Section Name</th>
+            <th>Action</th>
+        </tr>
+        {% for secname in sec %}
+            <tr>
+                <td>{{ secname[0] }}</td>
+                <td>
+                    <a href="/adminsections/{{secname[0]}}" style="background-color: #1d2725; color: #fff; padding: 5px 10px; border-radius: 5px; text-decoration: none;">View</a>
+                    <a href="/admindash/{{secname[0]}}/deletesection" style="background-color: #e01414; color: #fff; padding: 5px 10px; border-radius: 5px; text-decoration: none;">Delete Section</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <img src=static/secgraph.png style="scale:100%">
+    </div>
+    <p><a href='admindash/newsection' class="adder" style="margin-left: auto; margin-right: auto;">Add a new section</a></p>
+
+    <table>
+        <tr>
+            <th>S.No.</th>
+            <th>ISBN</th>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Content</th>
+            <th>Section Name</th>
+            <th>Issue Details</th>
+            <th>Actions</th>
+        </tr>
+        {% for book in books %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{ book[0] }}</td>
+                <td>{{ book[1] }}</td>
+                <td>{{ book[2] }}</td>
+                <td><a href="/admindash/readbook/{{book[0]}}" style="background-color: #1d2725; color: #fff; padding: 5px 10px; border-radius: 5px; text-decoration: none;">Read Content</a></td>
+                <td>{{ book[4] }}</td>
+                <td>
+                    <a href="/admindash/{{book[0]}}/issuedetails" style="background-color: #1d2725; color: #fff; padding: 5px 10px; border-radius: 5px; text-decoration: none;">Check issued details</a>
+                </td>
+                <td>
+                    <a href="/admindash/{{book[0]}}/editbook" style="background-color: #1d2725; color: #fff; padding: 5px 10px; border-radius: 5px; text-decoration: none;">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p><a href='admindash/newbook' class="adder" style="margin-left: auto; margin-right: auto;">Add a new book</a></p>
+    
+    <div style="display:flex; margin-left: 0; margin-right: 0">
+    <img src=static/issuegraph.png style="width:50%">
+    <img src=static/secissuegraph.png style="width:50%">
+    </div>
+    
+    <table>
+        <tr>
+            <th>S.No.</th>
+            <th>ISBN</th>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Username</th>
+            <th>Duration (Days)</th>
+            <th>Action</th>
+        </tr>
+        {% for req in reqs %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{ req[0] }}</td>
+                <td>{{ req[1] }}</td>
+                <td>{{ req[2] }}</td>
+                <td>{{ req[3] }}</td>
+                <td>{{ req[4] }}</td>
+                <td class="actions">
+                    <a href="/admindash/approverequest/{{req[3]}}/{{req[0]}}">Approve</a>
+                    <a href="/admindash/rejectrequest/{{req[3]}}/{{req[0]}}" class="reject">Reject</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Read Book | KitaabiKeeda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c7c4ba;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            color: #1d2725;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        a {
+            color: #1d2725;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        .actions a {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+            background-color: #1d2725;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .actions a:hover {
+            background-color: #0a1211;
+        }
+
+        .actions a.reject {
+            background-color: #d9534f;
+        }
+
+        .return {
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #1d2725;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-decoration: none;
+        }
+        .uncopyable {
+            user-select: none; 
+            -webkit-user-select: none; 
+            -moz-user-select: none; 
+            -ms-user-select: none;
+            cursor: default;
+        }
+
+        .return:hover {
+            background-color: #0a1211;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>{{ content[0][1] }} by {{ content[0][2] }}</h2>
+    
+    <p class="uncopyable"> {{ content[0][0]}} </p>
+
+    <div style="text-align: center;">
+    <a href="/userdash/reviewbook/{{isbn}}" class="return">Review Book</a>
+    
+    <a href="/userdash/userprofile" class="return" style="margin: 0px 50px 0px 50px">Return</a>
+
+    <a href="/buypdf/{{isbn}}" class="return">Download PDF (PAID)</a>
+    
+    </div>
+</div>
+
+</body>
+</html>

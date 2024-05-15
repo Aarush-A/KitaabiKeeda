@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login | KitaabiKeeda</title>
+    <style>
+body {
+            background-color: #c7c4ba;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        img {
+            max-width: 100px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        h2 {
+            color: #1d2725;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            color: #1d2725;
+            font-weight: bold;
+        }
+
+        input[type="radio"] {
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: 8px;
+        }
+
+        input[type="submit"] {
+            background-color: #1d2725;
+            color: #fff;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0a1211;
+        }
+        
+
+        p {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        a {
+            color: #1d2725;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="../static/logo.png">
+    <h2 style="color: #1d2725;">Login to your KitaabiKeeda account</h2>
+    {% if err %}
+        <p>{{ err }}</p>
+    {% endif %}
+    <form method="POST" action="/login" id="login-form">
+        <label>Username</label>
+        <input type="text" name="username" required/>
+
+        <label>Password</label>
+        <input type="password" name="password" required/>
+        <br>
+        <br>
+        <input type="submit" value="Submit" />
+    </form>
+    <p>Don't have an account yet? <a href='register'>Register here</a></p>
+</div>
+
+</body>
+</html>

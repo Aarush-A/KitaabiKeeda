@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile | KitaabiKeeda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c7c4ba;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            color: #1d2725;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        a {
+            color: #1d2725;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        .actions a {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+            background-color: #1d2725;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .actions a:hover {
+            background-color: #0a1211;
+        }
+
+        .actions a.reject {
+            background-color: #d9534f;
+        }
+
+        .container a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .allbooks {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #1d2725;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-decoration: none;
+        }
+
+        .allbooks:hover {
+            background-color: #0a1211;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="/userdash" class="allbooks" style="margin-left: 0; width: 100px">Main Menu</a>
+    <h2>Welcome {{ userdetails[0][0] }} {{ userdetails[0][1] }}</h2>
+    
+    <table>
+        <tr>
+            <th>ISBN</th>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Status</th>
+        </tr>
+        {% for req in reqs %}
+            <tr>
+                <td>{{ req[0] }}</td>
+                <td>{{ req[1] }}</td>
+                <td>{{ req[2] }}</td>
+                <td>{{ req[3] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Books Table -->
+    <table>
+        <tr>
+            <th>S.No</th>
+            <th>ISBN</th>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Validity</th>
+            <th>Section Name</th>
+            <th>Action</th>
+        </tr>
+        {% for sno1, book in appbooks %}
+            <tr>
+                <td>{{ sno1 }}</td>
+                <td>{{ book[0] }}</td>
+                <td>{{ book[1] }}</td>
+                <td>{{ book[2] }}</td>
+                <td>{{ book[4] }}</td>
+                <td>{{ book[5] }}</td>
+                <td>
+                    <a href="/userdash/readbook/{{book[0]}}" style="background-color: #1d2725; color: #fff; padding: 5px 10px; border-radius: 5px; margin-top: 5px;">Read Book</a>
+                    <a href="/userdash/returnbook/{{book[0]}}" style="background-color: #1d2725; color: #fff; padding: 5px 10px; border-radius: 5px; margin-top: 5px;">Return Book</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+</body>
+</html>
